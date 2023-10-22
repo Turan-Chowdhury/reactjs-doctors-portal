@@ -1,0 +1,6 @@
+/doctors-portal-client\node_modules
+/doctors-portal-client\.env.local
+/doctors-portal-client\.gitignore
+/doctors-portal-server\node_modules
+/doctors-portal-server\.env
+/doctors-portal-server\.gitignore

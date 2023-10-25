@@ -5,6 +5,7 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import { FaGoogle } from "react-icons/fa";
 import { GoogleAuthProvider } from 'firebase/auth';
 import toast from 'react-hot-toast';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
 
@@ -12,10 +13,16 @@ const Login = () => {
     const { signIn, providerLogin, resetPassword } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
     const [userEmail, setUserEmail] = useState('');
+    const [loggedUserEmail, setLoggedUserEmail] = useState('');
+    const[token] = useToken(loggedUserEmail);
     const location = useLocation();
     const navigate = useNavigate();
     
     const from = location.state?.from?.pathname || '/';
+
+    if (token) {
+        navigate(from, { replace: true });
+    }
     
     const handleLogin = data => {
         setLoginError('');
@@ -23,7 +30,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate(from, { replace: true });
+                setLoggedUserEmail(data.email);
             })
             .catch(error => setLoginError(error.message))
     }
@@ -41,7 +48,6 @@ const Login = () => {
     }
 
     const handleEmailBlur = event => {
-        toast("blur worked")
         const email = event.target.value;
         setUserEmail(email);
     }

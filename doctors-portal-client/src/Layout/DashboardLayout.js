@@ -3,16 +3,14 @@ import Navbar from '../Pages/Shared/Navbar/Navbar';
 import { Outlet, Link } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider';
 import useAdmin from '../hooks/useAdmin';
-import Loader from '../Pages/Shared/Loader/Loader';
 
 const DashboardLayout = () => {
 
     const { user } = useContext(AuthContext);
-    const [isAdmin, isAdminLoading] = useAdmin(user?.email);
+    const [isAdmin] = useAdmin(user?.email);
 
     return (
         <div>
-            {isAdminLoading && <Loader></Loader>}
             <Navbar></Navbar>            
             <div className="drawer lg:drawer-open">
                 <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
@@ -30,6 +28,7 @@ const DashboardLayout = () => {
                             isAdmin && <>
                                 <li><Link to='/dashboard/users'>All Users</Link></li>
                                 <li><Link to='/dashboard/add-doctor'>Add A Doctor</Link></li>
+                                <li><Link to='/dashboard/manage-doctors'>Manage Doctors</Link></li>
                             </>
                         }
                     </ul>                

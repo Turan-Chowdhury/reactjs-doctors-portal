@@ -14,7 +14,7 @@ const Login = () => {
     const [loginError, setLoginError] = useState('');
     const [userEmail, setUserEmail] = useState('');
     const [loggedUserEmail, setLoggedUserEmail] = useState('');
-    const[token] = useToken(loggedUserEmail);
+    const [token] = useToken(loggedUserEmail);
     const location = useLocation();
     const navigate = useNavigate();
     
@@ -28,11 +28,10 @@ const Login = () => {
         setLoginError('');
         signIn(data.email, data.password)
             .then(result => {
-                const user = result.user;
-                console.log(user);
+                //const user = result.user;
+                //console.log(user);
                 setLoggedUserEmail(data.email);
-            })
-            .catch(error => setLoginError(error.message))
+            })   
     }
     
     const googleProvider = new GoogleAuthProvider()
@@ -40,8 +39,8 @@ const Login = () => {
     const handleGoogleSignIn = () => {
         providerLogin(googleProvider)
             .then(result => {
-                const user = result.user;
-                console.log(user);
+                //const user = result.user;
+                //console.log(user);
                 navigate(from, { replace: true });
             })
             .catch(error => setLoginError(error.message))

@@ -10,15 +10,28 @@ import MyAppointment from "../../Pages/Dashboard/MyAppointment/MyAppointment";
 import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import AddDoctor from "../../Pages/Dashboard/AddDoctor/AddDoctor";
+import ManageDoctors from "../../Pages/Dashboard/ManageDoctors/ManageDoctors";
+import Payment from "../../Pages/Dashboard/Payment/Payment";
+import ErrorPage from "../../Pages/Shared/ErrorPage/ErrorPage";
+import About from "../../Pages/About/About";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout></MainLayout>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
                 element: <Home></Home>
+            },
+            {
+                path: '/appointment',
+                element: <Appointment></Appointment>
+            },
+            {
+                path: '/about',
+                element: <About></About>
             },
             {
                 path: '/login',
@@ -27,16 +40,13 @@ const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <SignUp></SignUp>
-            },
-            {
-                path: '/appointment',
-                element: <Appointment></Appointment>
-            }
+            }            
         ]
     },
     {
         path: '/dashboard',
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/dashboard',
@@ -49,6 +59,19 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/add-doctor',
                 element: <AdminRoute><AddDoctor></AddDoctor></AdminRoute>
+            },
+            {
+                path: '/dashboard/manage-doctors',
+                element: <AdminRoute><ManageDoctors></ManageDoctors></AdminRoute>
+            },
+            {
+                path: '/dashboard/payment/:booking_id',
+                element: <Payment></Payment>,
+                loader: ({ params }) => fetch(`https://doctors-portal-server-adi5uvffj-md-asiful-amin-chys-projects.vercel.app/bookings/${params.booking_id}`, {
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    }
+                })
             }
         ]
     }

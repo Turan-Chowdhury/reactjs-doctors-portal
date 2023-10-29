@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
 
     const { user } = useContext(AuthContext);
-    const { name: treatmentName, slots } = treatment;
+    const { name: treatmentName, price, slots } = treatment;
     const date = format(selectedDate, 'PP');
 
     const handleBooking = event => {
@@ -23,13 +23,15 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
             patient: name,
             slot,
             email,
-            phone
+            phone,
+            price
         }
 
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://doctors-portal-server-adi5uvffj-md-asiful-amin-chys-projects.vercel.app/bookings', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(booking)
         })
@@ -61,8 +63,8 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
                         <select name="slot" className="select select-bordered w-full">
                             {
                                 slots.map((slot, i) => <option
-                                    value={slot}
                                     key={i}
+                                    value={slot}
                                 >{slot}</option>)
                             }
                         </select>

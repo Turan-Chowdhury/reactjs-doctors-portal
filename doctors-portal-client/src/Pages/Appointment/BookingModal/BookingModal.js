@@ -27,7 +27,7 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
             price
         }
 
-        fetch('https://doctors-portal-server-adi5uvffj-md-asiful-amin-chys-projects.vercel.app/bookings', {
+        fetch('https://doctors-portal-server-ellicn3yx-md-asiful-amin-chys-projects.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

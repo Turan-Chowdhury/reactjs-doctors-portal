@@ -16,7 +16,7 @@ const AddDoctor = () => {
     const { data: specialties, isLoading } = useQuery({
         queryKey: ['specialty'],
         queryFn: async () => {
-            const res = await fetch('https://doctors-portal-server-adi5uvffj-md-asiful-amin-chys-projects.vercel.app/appointmentSpecialty');
+            const res = await fetch('https://doctors-portal-server-ellicn3yx-md-asiful-amin-chys-projects.vercel.app/appointmentSpecialty');
             const data = await res.json();
             return data;
         }
@@ -42,7 +42,7 @@ const AddDoctor = () => {
                         image: imgData.data.url
                     }
                     // save doctor to database
-                    fetch('https://doctors-portal-server-adi5uvffj-md-asiful-amin-chys-projects.vercel.app/doctors', {
+                    fetch('https://doctors-portal-server-ellicn3yx-md-asiful-amin-chys-projects.vercel.app/doctors', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

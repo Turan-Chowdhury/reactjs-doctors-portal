@@ -44,7 +44,7 @@ const SignUp = () => {
 
     const saveUser = (name, email) => {
         const user = { name, email };
-        fetch('https://doctors-portal-server-adi5uvffj-md-asiful-amin-chys-projects.vercel.app/users', {
+        fetch('https://doctors-portal-server-ellicn3yx-md-asiful-amin-chys-projects.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -109,8 +109,6 @@ const SignUp = () => {
                     </div>
                 </form>
                 <p className='text-center mt-4 '>Already have an account? <Link to='/login' className='text-secondary'>Please login</Link></p>
-                <div className="divider">OR</div>
-                <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
             </div>
         </div>
     );

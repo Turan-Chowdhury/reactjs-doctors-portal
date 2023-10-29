@@ -215,6 +215,11 @@ async function run() {
 
         app.post('/users', async (req, res) => {
             const user = req.body;
+            query = { email: user.email };
+            const userAlreadyAdded = await userCollection.findOne(query);
+            if (userAlreadyAdded) {
+                return res.send({userAlreadyAdded: true });
+            }
             const result = await userCollection.insertOne(user);
             res.send(result);
         })

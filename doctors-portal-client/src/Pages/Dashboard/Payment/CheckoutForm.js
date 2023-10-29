@@ -15,7 +15,7 @@ const CheckoutForm = ({ booking }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("https://doctors-portal-server-adi5uvffj-md-asiful-amin-chys-projects.vercel.app/create-payment-intent", {
+        fetch("https://doctors-portal-server-ellicn3yx-md-asiful-amin-chys-projects.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -88,7 +88,7 @@ const CheckoutForm = ({ booking }) => {
                 price,
                 transactionId: paymentIntent.id
             }
-            fetch('https://doctors-portal-server-adi5uvffj-md-asiful-amin-chys-projects.vercel.app/payments', {
+            fetch('https://doctors-portal-server-ellicn3yx-md-asiful-amin-chys-projects.vercel.app/payments', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

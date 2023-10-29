@@ -67,7 +67,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:booking_id',
                 element: <Payment></Payment>,
-                loader: ({ params }) => fetch(`https://doctors-portal-server-adi5uvffj-md-asiful-amin-chys-projects.vercel.app/bookings/${params.booking_id}`, {
+                loader: ({ params }) => fetch(`https://doctors-portal-server-ellicn3yx-md-asiful-amin-chys-projects.vercel.app/bookings/${params.booking_id}`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
